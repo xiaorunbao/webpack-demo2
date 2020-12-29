@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Button, Switch } from 'antd';
-import 'antd/dist/antd.css';
 
-import styles from './index.css';
-// import Pic from './images/test.png';
+// import styles from './index.css';
 
 const Div = document.createElement('div');
 

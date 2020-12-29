@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    extends: ['airbnb', 'prettier'],
+    extends: ['airbnb', 'airbnb/hooks', 'prettier'],
     parser: 'babel-eslint',
     parserOptions: {
         sourceType: 'module',
@@ -20,11 +20,13 @@ module.exports = {
     settings: {
         'import/resolver': {
             webpack: {
-                config: './build/webpack.prod.js',
+                config: './webpack-config/webpack.prod.js',
             },
         },
     },
     plugins: ['react', 'jsdoc', 'prettier'],
+    // TODO 增加
+    // plugins: ['react', 'prettier'],
     globals: {
         domain: true,
     },
