@@ -2,9 +2,9 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const baseWebpackConfig = require('./webpack.base.conf');
+const { baseConfig } = require('./webpack.base.conf');
 
-module.exports = merge(baseWebpackConfig, {
+module.exports = merge(baseConfig, {
     mode: 'production', // mode是webpack4新增的模式
     plugins: [
         new CleanWebpackPlugin(),

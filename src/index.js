@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Button, Switch } from 'antd';
 
-// import styles from './index.css';
+import './common/css/normalize.less';
 
 const Div = document.createElement('div');
 

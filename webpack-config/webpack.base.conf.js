@@ -48,49 +48,53 @@ const fontLoader = (function () {
     }));
 })();
 module.exports = {
-    entry: {
-        app: './src/index.js',
-    },
-    output: {
-        path: DIST_PATH,
-        // 使用hash进行标记
-        chunkFilename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
-        filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
-    },
-    context: ROOT_PATH,
-    resolve: {
-        modules: [APP_PATH, 'node_modules'],
-        alias: {
-            '@': APP_PATH,
-            base: path.join(APP_PATH, 'framework/base'),
-            framework: path.join(APP_PATH, 'framework'),
-            conf: path.join(APP_PATH, 'config'),
+    baseConfig: {
+        entry: {
+            app: './src/index.js',
         },
-        extensions: ['.js', '.jsx', '.json', '.css', '.json'],
-    },
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                include: APP_PATH,
-                loader: 'eslint-loader',
-                enforce: 'pre',
-                options: {
-                    emitWarning: true,
-                    formatter: require('eslint-friendly-formatter'),
-                },
+        output: {
+            path: DIST_PATH,
+            // 使用hash进行标记
+            chunkFilename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
+            filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
+        },
+        context: ROOT_PATH,
+        resolve: {
+            modules: [APP_PATH, 'node_modules'],
+            alias: {
+                '@': APP_PATH,
+                base: path.join(APP_PATH, 'framework/base'),
+                framework: path.join(APP_PATH, 'framework'),
+                conf: path.join(APP_PATH, 'config'),
             },
-            {
-                test: /\.jsx?$/,
-                include: APP_PATH,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    cacheDirectory: true,
+            extensions: ['.js', '.jsx', '.json', '.css', '.json'],
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.jsx?$/,
+                    include: APP_PATH,
+                    loader: 'eslint-loader',
+                    enforce: 'pre',
+                    options: {
+                        emitWarning: true,
+                        formatter: require('eslint-friendly-formatter'),
+                    },
                 },
-            },
-            ...imgLoader,
-            ...fontLoader,
-        ],
+                {
+                    test: /\.jsx?$/,
+                    include: APP_PATH,
+                    exclude: /node_modules/,
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true,
+                    },
+                },
+                ...imgLoader,
+                ...fontLoader,
+            ],
+        },
     },
+    ROOT_PATH,
+    projectEnName,
 };
