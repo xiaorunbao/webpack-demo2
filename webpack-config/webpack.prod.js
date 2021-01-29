@@ -2,7 +2,9 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { baseConfig } = require('./webpack.base.conf');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const { baseConfig, ROOT_PATH } = require('./webpack.base.conf');
 
 module.exports = merge(baseConfig, {
     mode: 'production', // mode是webpack4新增的模式
@@ -27,7 +29,11 @@ module.exports = merge(baseConfig, {
                 minifyURLs: true,
             },
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'static/css/[name]-[chunkhash:10].css',
+            chunkFilename: 'static/css/[id]-[chunkhash:10].css',
+        }),
+        new CopyWebpackPlugin([{ from: `${ROOT_PATH}/src/images`, to: `${ROOT_PATH}/dist/static/images` }]),
     ],
     module: {
         rules: [
