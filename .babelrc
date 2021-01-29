@@ -8,7 +8,8 @@
           "node": "current"
         },
         "modules": false,
-        "useBuiltIns": "usage"
+        "useBuiltIns": "entry",
+        "shippedProposals": true
       }
     ],
     "@babel/preset-react"

@@ -5,8 +5,6 @@ const APP_PATH = path.resolve(ROOT_PATH, 'src'); // 源文件目录
 const DIST_PATH = path.resolve(ROOT_PATH, 'dist'); // 打包目录
 
 const projectEnName = 'webpack-demo';
-// 主题样式
-// const theme = require('../src/common/theme/theme');
 
 // process: nodeJS  打印警告以及完整堆栈跟踪
 process.traceDeprecation = true;

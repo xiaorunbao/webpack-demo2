@@ -6,9 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack-config/webpack.prod.js",
     "start": "cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server --disableHostCheck=true --progress --config ./webpack-config/webpack.dev.js",
-    "dev": "webpack-dev-server --inline --progress --config webpack-config/webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write 'src/**/*.{js,jsx}'"
+    "format": "prettier --write \"src/**/*.{js,jsx}\""
   },
   "author": "wx",
   "license": "ISC",
@@ -79,7 +78,20 @@
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "antd": "^4.9.2",
+    "axios": "^0.21.1",
+    "core-js": "^3.8.3",
+    "history": "^5.0.0",
+    "immutable": "^4.0.0-rc.12",
+    "qs": "^6.9.6",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "react-loadable": "^5.5.0",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   }
 }
