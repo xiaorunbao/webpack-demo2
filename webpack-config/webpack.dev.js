@@ -14,7 +14,7 @@ const port = 3000;
 
 module.exports = merge(baseConfig, {
     mode: 'development',
-    devtool: 'cheap-module-eval-source-map', // 源错误检查
+    devtool: 'eval-cheap-source-map', // 源错误检查
     entry: (function () {
         const app = [`webpack-dev-server/client?http://${ip}:${port}`, 'webpack/hot/only-dev-server', './src/index.js'];
         return {
@@ -76,15 +76,11 @@ module.exports = merge(baseConfig, {
     devServer: {
         // 热更新服务配置
         port,
-        contentBase: path.join(ROOT_PATH, 'dev'),
-        publicPath: '/',
         compress: true,
         historyApiFallback: true,
         hot: true, // 开启
         https: false,
-        noInfo: true,
         open: true,
-        inline: true,
         proxy: {},
     },
 });

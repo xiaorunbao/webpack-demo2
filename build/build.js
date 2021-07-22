@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const chalk = require('chalk');
-const config = require('../webpack-config/webpack.prod.conf');
+const config = require('../webpack-config/webpack.prod.js');
 
 webpack(config, (err, stats) => {
     if (err) throw err;

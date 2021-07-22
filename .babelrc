@@ -8,8 +8,9 @@
           "node": "current"
         },
         "modules": false,
-        "useBuiltIns": "entry",
-        "shippedProposals": true
+        "useBuiltIns": "usage",
+        "shippedProposals": true,
+        "corejs": { "version": "3.15", "proposals": true }
       }
     ],
     "@babel/preset-react"

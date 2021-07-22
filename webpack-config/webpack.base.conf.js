@@ -45,8 +45,10 @@ const fontLoader = (function () {
         },
     }));
 })();
+
 module.exports = {
     baseConfig: {
+        mode: 'production',
         entry: {
             app: './src/index.js',
         },
@@ -90,6 +92,20 @@ module.exports = {
                 },
                 ...imgLoader,
                 ...fontLoader,
+                // {
+                //     test: /\.(png|jpe?g|gif|svg)$/i,
+                //     type: 'asset/inline',
+                //     generator: {
+                //         filename: 'static/images/[name].[ext]',
+                //     },
+                // },
+                // {
+                //     test: /\.(woff|woff2|otf|ttf|eot|svg)$/i,
+                //     type: 'asset/inline',
+                //     generator: {
+                //         filename: 'static/fonts/[name].[ext]',
+                //     },
+                // },
             ],
         },
     },

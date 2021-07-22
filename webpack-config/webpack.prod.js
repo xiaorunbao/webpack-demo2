@@ -8,6 +8,7 @@ const { baseConfig, ROOT_PATH } = require('./webpack.base.conf');
 
 module.exports = merge(baseConfig, {
     mode: 'production', // mode是webpack4新增的模式
+    devtool: false,
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
