@@ -1,11 +1,7 @@
-/**
- * 功能：根组件
- */
-
 import { React, Route, Redirect, Switch, hot } from 'framework/Util';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import config from 'conf';
+import config from '../../config';
 import Dialog from '../../framework/dialog/container';
 import Loading from '../../framework/loading/container';
 import { lazyload } from '../../framework';

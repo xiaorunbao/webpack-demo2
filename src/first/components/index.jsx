@@ -1,10 +1,17 @@
+import { Button } from 'antd';
 import { React } from '../../framework/Util';
 import './style/index.less';
 
-export default function Myfirst() {
-    return <div className="card">test my planet</div>;
+function MyFirst() {
+    return (
+        <div className="hello">
+            <Button>test my planet</Button>
+        </div>
+    );
 }
 
-Myfirst.propTypes = {};
+MyFirst.propTypes = {};
 
-Myfirst.defaultPorps = {};
+MyFirst.defaultPorps = {};
+
+export default MyFirst;

@@ -1,9 +1,6 @@
-/**
- * 功能：受限组件入口
- */
-import { React, Route, Redirect, Switch } from '../../framework/Util';
 import config from '../../config';
 import { lazyload } from '../../framework';
+import { React, Redirect, Route, Switch } from '../../framework/Util';
 
 function App() {
     return (

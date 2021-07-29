@@ -9,78 +9,24 @@ const projectEnName = 'webpack-demo';
 // process: nodeJS  打印警告以及完整堆栈跟踪
 process.traceDeprecation = true;
 
-const imgLoader = (function () {
-    return [
-        { type: 'png', mimetype: 'image/png' },
-        { type: 'jpg', mimetype: 'image/jpg' },
-        { type: 'jpeg', mimetype: 'image/jpeg' },
-        { type: 'gif', mimetype: 'image/gif' },
-        { type: 'svg', mimetype: 'image/svg' },
-    ].map((item) => ({
-        test: new RegExp(`\\.(${item.type})(\\?.*)?$`),
-        loader: 'url-loader',
-        options: {
-            limit: 10000,
-            name: 'static/images/[name].[ext]',
-            mimetype: item.mimetype,
-        },
-    }));
-})();
-
-const fontLoader = (function () {
-    return [
-        { type: 'woff', mimetype: 'application/font-woff' },
-        { type: 'woff2', mimetype: 'application/font-woff2' },
-        { type: 'otf', mimetype: 'font/opentype' },
-        { type: 'ttf', mimetype: 'application/octet-stream' },
-        { type: 'eot', mimetype: 'application/vnd.ms-fontobject' },
-        { type: 'svg', mimetype: 'image/svg+xml' },
-    ].map((item) => ({
-        test: new RegExp(`\\.(${item.type})(\\?.*)?$`),
-        loader: 'url-loader',
-        options: {
-            limit: 10000,
-            name: 'static/fonts/[name].[ext]',
-            mimetype: item.mimetype,
-        },
-    }));
-})();
-
 module.exports = {
     baseConfig: {
-        mode: 'production',
         entry: {
             app: './src/index.js',
         },
         output: {
             path: DIST_PATH,
             // 使用hash进行标记
-            chunkFilename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
             filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
+            clean: true,
         },
         context: ROOT_PATH,
         resolve: {
             modules: [APP_PATH, 'node_modules'],
-            alias: {
-                '@': APP_PATH,
-                base: path.join(APP_PATH, 'framework/base'),
-                framework: path.join(APP_PATH, 'framework'),
-                conf: path.join(APP_PATH, 'config'),
-            },
             extensions: ['.js', '.jsx', '.json', '.css', '.json'],
         },
         module: {
             rules: [
-                {
-                    test: /\.jsx?$/,
-                    include: APP_PATH,
-                    loader: 'eslint-loader',
-                    enforce: 'pre',
-                    options: {
-                        emitWarning: true,
-                        formatter: require('eslint-friendly-formatter'),
-                    },
-                },
                 {
                     test: /\.jsx?$/,
                     include: APP_PATH,
@@ -90,22 +36,25 @@ module.exports = {
                         cacheDirectory: true,
                     },
                 },
-                ...imgLoader,
-                ...fontLoader,
-                // {
-                //     test: /\.(png|jpe?g|gif|svg)$/i,
-                //     type: 'asset/inline',
-                //     generator: {
-                //         filename: 'static/images/[name].[ext]',
-                //     },
-                // },
-                // {
-                //     test: /\.(woff|woff2|otf|ttf|eot|svg)$/i,
-                //     type: 'asset/inline',
-                //     generator: {
-                //         filename: 'static/fonts/[name].[ext]',
-                //     },
-                // },
+                {
+                    test: /\.css$/,
+                    exclude: /node_modules/,
+                    use: ['style-loader', 'css-loader'],
+                },
+                {
+                    test: /\.(png|jpe?g|gif|svg)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'static/images/[name][ext][query]',
+                    },
+                },
+                {
+                    test: /\.(woff|woff2|otf|ttf|eot|svg)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'static/fonts/[name][ext][query]',
+                    },
+                },
             ],
         },
     },

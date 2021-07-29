@@ -5,7 +5,7 @@ module.exports = {
     parserOptions: {
         sourceType: 'module',
         allowImportExportEverywhere: true,
-        ecmaVersion: 9,
+        ecmaVersion: 11,
         ecmaFeatures: {
             jsx: true,
             experimentalObjectRestSpread: true,
@@ -14,7 +14,7 @@ module.exports = {
     env: {
         browser: true,
         node: true,
-        es6: true,
+        es2020: true,
         embertest: true,
     },
     settings: {
@@ -25,8 +25,6 @@ module.exports = {
         },
     },
     plugins: ['react', 'jsdoc', 'prettier'],
-    // TODO 增加
-    // plugins: ['react', 'prettier'],
     globals: {
         domain: true,
     },

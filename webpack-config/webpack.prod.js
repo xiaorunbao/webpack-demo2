@@ -1,16 +1,13 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const { baseConfig, ROOT_PATH } = require('./webpack.base.conf');
+const { baseConfig } = require('./webpack.base.conf');
+const { ids } = require('webpack');
 
 module.exports = merge(baseConfig, {
-    mode: 'production', // mode是webpack4新增的模式
-    devtool: false,
+    mode: 'production',
     plugins: [
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             title: 'webpack-demo', // 更改HTML的title的内容
@@ -32,21 +29,20 @@ module.exports = merge(baseConfig, {
         }),
         new MiniCssExtractPlugin({
             filename: 'static/css/[name]-[chunkhash:10].css',
-            chunkFilename: 'static/css/[id]-[chunkhash:10].css',
         }),
-        new CopyWebpackPlugin([{ from: `${ROOT_PATH}/src/images`, to: `${ROOT_PATH}/dist/static/images` }]),
+        new ids.HashedModuleIdsPlugin(),
     ],
     module: {
         rules: [
             {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
-            },
-            {
                 test: /\.less$/,
                 use: [
-                    { loader: MiniCssExtractPlugin.loader },
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '',
+                        },
+                    },
                     { loader: 'css-loader' },
                     // 自动加前缀
                     {
