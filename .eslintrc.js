@@ -24,7 +24,7 @@ module.exports = {
             },
         },
     },
-    plugins: ['react', 'jsdoc', 'prettier'],
+    plugins: ['react', 'prettier'],
     globals: {
         domain: true,
     },

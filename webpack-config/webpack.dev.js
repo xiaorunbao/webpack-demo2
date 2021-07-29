@@ -1,12 +1,9 @@
-const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 打包工具
 const webpack = require('webpack');
 // 获取IP
-const ip = require('ip').address().toString();
-
-const { baseConfig, ROOT_PATH, projectEnName } = require('./webpack.base.conf');
+const { baseConfig } = require('./webpack.base.conf');
 
 const port = 3000;
 

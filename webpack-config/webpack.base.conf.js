@@ -1,4 +1,6 @@
 const path = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const ROOT_PATH = path.resolve(__dirname, '../');
 const APP_PATH = path.resolve(ROOT_PATH, 'src'); // 源文件目录
@@ -20,6 +22,11 @@ module.exports = {
             filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
             clean: true,
         },
+        plugins: [
+            new ESLintPlugin({ fix: true, extensions: ['js', 'jsx'] }),
+            new StylelintPlugin({ fix: true, files: ['**/*.{jsx,htm,html,css,less}'] }),
+        ],
+
         context: ROOT_PATH,
         resolve: {
             modules: [APP_PATH, 'node_modules'],
