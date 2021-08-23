@@ -2,8 +2,8 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const { baseConfig } = require('./webpack.base.conf');
 const { ids } = require('webpack');
+const { baseConfig } = require('./webpack.base.conf');
 
 module.exports = merge(baseConfig, {
     mode: 'production',
